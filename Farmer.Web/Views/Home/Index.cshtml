@@ -1,0 +1,54 @@
+﻿/* Index view to display a list of Farmers*/
+
+@model IEnumerable<FarmerViewModel>
+@using Farmer.Web.Models
+
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Farmers</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a id="createEditUserModal" data-toggle="modal" asp-action="AddFarmer" data-target="#modal-action-user" class="btn btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>  Add Farmer
+            </a>
+        </div>
+        <div class="top-buffer"></div>
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                        <td>
+                            <a id="editUserModal" data-toggle="modal" asp-action="EditFarmer" asp-route-id="@item.Id" data-target="#modal-action-user"
+                               class="btn btn-info">
+                                <i class="glyphicon glyphicon-pencil"></i>  Edit
+                            </a>
+                            <a id="deleteFarmerModal" data-toggle="modal" asp-action="DeleteFarmer" asp-route-id="@item.Id" data-target="#modal-action-user" class="btn btn-danger">
+                                <i class="glyphicon glyphicon-trash"></i>  Delete
+                            </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-farmer", AreaLabeledId = "modal-action-farmer-label", Size = ModalSize.Large })
+
+@section scripts
+{
+    <script src="~/js/farmer-index.js" asp-append-version="true"></script>
+}  
