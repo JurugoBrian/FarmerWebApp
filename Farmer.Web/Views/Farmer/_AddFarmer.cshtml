@@ -1,7 +1,6 @@
 ﻿@model FarmerViewModel
 @using Farmer.Web.Models
 
-/* A view that allows one add a farmer to the system*/
 <form asp-action="AddFarmer" role="form">
     @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Add Farmer" })
     <div class="modal-body form-horizontal">

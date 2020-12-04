@@ -24,8 +24,8 @@ namespace Farmer.Web.Controllers
             this.farmerProfileService = farmerProfileService;
         }
         
-        // This method returns an Index View with data which is dispalyed when the web app
-        // initialy loads
+        // This method returns an Index View with data which is dispalyed when the web app initialy loads
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -54,7 +54,7 @@ namespace Farmer.Web.Controllers
             return PartialView("_AddFarmer", model);
         }
 
-        // The action method AddUser helps to return a view to add a farmer to the system
+        // The action method AddFarmer helps to return a view to add a farmer to the system
 
         [HttpPost]
         public ActionResult AddFarmer(FarmerViewModel model)
@@ -82,6 +82,45 @@ namespace Farmer.Web.Controllers
             }
             return View(model);
         }
+
+        // The action method EditFarmer helps to return a view to edit a farmers details in the system
+
+        public ActionResult EditFarmer(int? id)
+        {
+            FarmerViewModel model = new FarmerViewModel();
+            if (id.HasValue && id != 0)
+            {
+                Farmers farmerEntity = farmerService.GetFarmer(id.Value);
+                FarmerProfile farmerProfileEntity = farmerProfileService.GetFarmerProfile(id.Value);
+                model.FirstName = farmerProfileEntity.FirstName;
+                model.LastName = farmerProfileEntity.LastName;
+                model.Address = farmerProfileEntity.Address;
+                model.Email = farmerEntity.Email;
+            }
+            return PartialView("_EditFarmer", model);
+        }
+
+        [HttpPost]
+        public ActionResult EditFarmer(FarmerViewModel model)
+        {
+            Farmers farmerEntity = farmerService.GetFarmer(model.Id);
+            farmerEntity.Email = model.Email;
+            farmerEntity.ModifiedDate = DateTime.UtcNow;
+            FarmerProfile farmerProfileEntity = farmerProfileService.GetFarmerProfile(model.Id);
+            farmerProfileEntity.FirstName = model.FirstName;
+            farmerProfileEntity.LastName = model.LastName;
+            farmerProfileEntity.Address = model.Address;
+            farmerProfileEntity.ModifiedDate = DateTime.UtcNow;
+            farmerEntity.FarmerProfile = farmerProfileEntity;
+            farmerService.UpdateFarmer(farmerEntity);
+            if (farmerEntity.Id > 0)
+            {
+                return RedirectToAction("index");
+            }
+            return View(model);
+        }
+
+        // DeleteFarmer action method returns a view to delete a farmer
 
         [HttpGet]
         public PartialViewResult DeleteFarmer(int id)
