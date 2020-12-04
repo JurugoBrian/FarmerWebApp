@@ -1,4 +1,4 @@
-﻿/* Index view to display a list of Farmers*/
+﻿/* Index view to display a list of Farmers in tabular format once the application loads*/
 
 @model IEnumerable<FarmerViewModel>
 @using Farmer.Web.Models
@@ -46,7 +46,7 @@
     </div>
 </div>
 
-@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-farmer", AreaLabeledId = "modal-action-farmer-label", Size = ModalSize.Large })
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-user", AreaLabeledId = "modal-action-farmer-label", Size = ModalSize.Large })
 
 @section scripts
 {

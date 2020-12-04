@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Farmer.Data;
-using Farmer.Repo;
 using Farmer.Service;
 using Farmer.Web.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+// Farmer Controller has all ActionResult methods for the end-user interface of operations
 
 namespace Farmer.Web.Controllers
 {
-    // Farmer Controller has all ActionResult methods for the end-user interface of operations
+
     public class FarmerController : Controller
     {
         private readonly IFarmerService farmerService;
@@ -24,7 +23,9 @@ namespace Farmer.Web.Controllers
             this.farmerService = farmerService;
             this.farmerProfileService = farmerProfileService;
         }
-      
+        
+        // This method returns an Index View with data which is dispalyed when the web app
+        // initialy loads
         [HttpGet]
         public IActionResult Index()
         {
@@ -53,8 +54,10 @@ namespace Farmer.Web.Controllers
             return PartialView("_AddFarmer", model);
         }
 
+        // The action method AddUser helps to return a view to add a farmer to the system
+
         [HttpPost]
-        public ActionResult AddUser(FarmerViewModel model)
+        public ActionResult AddFarmer(FarmerViewModel model)
         {
             Farmers farmersEntity = new Farmers
             {

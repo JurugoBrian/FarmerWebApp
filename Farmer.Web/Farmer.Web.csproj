@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <Content Remove="Views\Farmer\AddFarmer.cshtml" />
+    <Content Remove="Views\Farmer\DeleteFarmer.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Views\Farmer\AddFarmer.cshtml" />
+    <None Include="Views\Farmer\AddFarmer.cshtml" />
+    <None Include="Views\Farmer\DeleteFarmer.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +26,9 @@
     <ProjectReference Include="..\..\Farmer.Data\Farmer.Data\Farmer.Data.csproj" />
     <ProjectReference Include="..\..\Farmer.Repo\Farmer.Repo\Farmer.Repo.csproj" />
     <ProjectReference Include="..\..\Farmer.Service\Farmer.Service\Farmer.Service.csproj" />
+    <ProjectReference Include="..\Farmer.Data\Farmer.Data\Farmer.Data.csproj" />
+    <ProjectReference Include="..\Farmer.Repo\Farmer.Repo\Farmer.Repo.csproj" />
+    <ProjectReference Include="..\Farmer.Service\Farmer.Service\Farmer.Service.csproj" />
   </ItemGroup>
 
 </Project>

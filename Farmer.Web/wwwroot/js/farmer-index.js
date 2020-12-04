@@ -1,9 +1,10 @@
-﻿(function ($) {
+﻿
+(function ($) {
     function Farmers() {
         var $this = this;
 
         function initilizeModel() {
-            $("#modal-action-farmer").on('loaded.bs.modal', function (e) {
+            $("#modal-action-user").on('loaded.bs.modal', function (e) {
 
             }).on('hidden.bs.modal', function (e) {
                 $(this).removeData('bs.modal');
@@ -14,7 +15,7 @@
         }
     }
     $(function () {
-        var self = new User();
+        var self = new Farmers();
         self.init();
     })
 }(jQuery))  

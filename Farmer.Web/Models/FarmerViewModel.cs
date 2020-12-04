@@ -1,10 +1,10 @@
-﻿/* This is the first view accessed when the application is executed. It shows a list of farmers registered in the database.
-   The view is linked to add a new farmer, edit a farmer and delete a farmer.
- */
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
+
+/* FarmerViewModel is view model created to pass data from a controller to the view,  This view model is also 
+   used to add and edit a Farmers details.
+*/
 
 namespace Farmer.Web.Models
 {
